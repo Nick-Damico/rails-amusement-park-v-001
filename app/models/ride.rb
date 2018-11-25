@@ -3,17 +3,20 @@ class Ride < ApplicationRecord
   belongs_to :user
 
   def take_ride
-    failure_messages = ''
-    failure_messages += rider_enough_tickets
-    failure_messages += rider_tall_enough
-
+    failure_messages = check_attraction_requirements
     return failure_messages.prepend('Sorry.') unless failure_messages.empty?
-    update_rider_tickets
-    update_rider_nausea
-    update_rider_happiness
+    # If no failure_messages are empty? Rider is able to ride, and info should be updated
+    update_rider
   end
 
   private
+    def check_attraction_requirements
+      messages = ''
+      messages += rider_enough_tickets
+      messages += rider_tall_enough
+      messages
+    end
+
     def rider_enough_tickets
       message = ''
       if user.tickets > attraction.tickets
@@ -30,6 +33,12 @@ class Ride < ApplicationRecord
         message = " You are not tall enough to ride the #{attraction.name}."
       end
       message
+    end
+
+    def update_rider
+      update_rider_tickets
+      update_rider_nausea
+      update_rider_happiness
     end
 
     def update_rider_tickets

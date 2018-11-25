@@ -1,0 +1,48 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+      <%= form_for user, html: {class: 'form-horizontal'} do |f| %>
+        <%= render partial: 'errors', locals: {user: user} %>
+        <div class="form-group">
+          <%= f.label :name %>
+          <%= f.text_field :name, class: 'form-control', placeholder: 'John Doe' %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :height, 'Height: (in inches)' %>
+          <%= f.text_field :height, class: 'form-control', placeholder: '65' %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :happiness, 'Rate Happiness (1-5 scale)' %>
+          <%= f.text_field :happiness, class: 'form-control', placeholder: '4' %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :nausea, 'Rate Nausea (1-5 scale)' %>
+          <%= f.text_field :nausea, class: 'form-control', placeholder: '3' %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :tickets, 'How many Tickets? ($1 = 1 ticket)' %>
+          <%= f.text_field :tickets, class: 'form-control', placeholder: '20' %>
+        </div>
+
+        <div class="form-group">
+          <%= f.check_box :admin %>
+          <%= f.label :admin, "Check if you are an Amusement Park Owner" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :password %>
+          <%= f.text_field :password, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= f.submit nil, class: 'btn btn-primary' %>
+        </div>
+      <% end %>
+
+    </div>
+  </div>
+</div>
